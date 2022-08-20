@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container" :class="{ containerResults: activeStatus }">
     <div class="search">
       <input
         type="text"

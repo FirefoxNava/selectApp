@@ -31,6 +31,12 @@ body {
     position: relative;
 }
 
+.containerResults{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    transition: 0.3s;
+}
+
 /* Busqueda */
 
 .container .search{
@@ -117,6 +123,8 @@ body {
 
 .activeResults{
     visibility: visible;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     opacity: 1;
     transition: 0.3s;
 }
