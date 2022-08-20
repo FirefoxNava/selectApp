@@ -1,35 +1,29 @@
 # selectApp
 
-This template should help get you started developing with Vue 3 in Vite.
+Prueba tecnica para LinkTIC
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Instalación del proyecto Vue - Vite
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Ejecución de Vue - Vite
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Instalación Backend
 
 ```sh
-npm run build
+cd Backend
+npm install
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Ejecución del Backend
 
 ```sh
-npm run lint
+npm run start
 ```
