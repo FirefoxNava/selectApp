@@ -44,6 +44,7 @@ export default {
     };
   },
   methods: {
+    //Obtener datos de servidor
     async getFruitData() {
       await axios
         .get(import.meta.env.VITE_API_URL + "/api/fruits")
@@ -68,6 +69,7 @@ export default {
         console.log(emptyArray.length);
         this.filteredData = emptyArray;
 
+        //Mostrar aviso de error si el filtro no contiene datos
         if (emptyArray.length === 0) {
           this.errorStatus = true;
         } else {
