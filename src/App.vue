@@ -1,18 +1,20 @@
 <template>
   <section class="container">
     <div class="search">
-      <input type="text" placeholder="Select an item">
+      <input type="text" placeholder="Select an item" 
+        v-model="inputData" 
+        v-on:focusin="showResults()"
+        v-on:focusout="disableResults()"
+        v-on:input="filterFruit(inputData)">
       <div class="icon">
-        <svg viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M6.00001 6.50001C5.8684 6.50077 5.73794 6.47554 5.6161 6.42578C5.49427 6.37601 5.38345 6.30269 5.29001 6.21001L1.29 2.21001C1.19676 2.11677 1.1228 2.00608 1.07234 1.88426C1.02188 1.76243 0.995911 1.63187 0.995911 1.50001C0.995911 1.36815 1.02188 1.23758 1.07234 1.11576C1.1228 0.993934 1.19676 0.883244 1.29 0.790006C1.38324 0.696767 1.49393 0.622806 1.61575 0.572346C1.73758 0.521885 1.86814 0.495914 2 0.495914C2.13186 0.495914 2.26243 0.521885 2.38425 0.572346C2.50608 0.622806 2.61677 0.696767 2.71001 0.790006L6.00001 4.10001L9.30002 0.920006C9.39201 0.817716 9.50412 0.735507 9.62933 0.678521C9.75454 0.621535 9.89017 0.590998 10.0277 0.588819C10.1653 0.586639 10.3018 0.612864 10.4288 0.665855C10.5557 0.718846 10.6704 0.797463 10.7656 0.896788C10.8607 0.996112 10.9344 1.11401 10.9819 1.2431C11.0295 1.3722 11.0499 1.50971 11.0419 1.64705C11.0338 1.78438 10.9976 1.91859 10.9353 2.04126C10.873 2.16394 10.7861 2.27245 10.68 2.36001L6.68001 6.22001C6.49714 6.39632 6.25401 6.49643 6.00001 6.50001Z" />
-        </svg>
+        <arrowIcon></arrowIcon>
       </div>
     </div>
-    <ul class="results">
-      <li v-for="fruit in fruitData" :key="fruit">
-        {{fruit}}
+    <ul class="results" :class="{ activeResults: activeStatus }">
+      <li v-for="fruit in filteredData" :key="fruit">
+        {{ fruit }}
       </li>
+      <li v-if="errorStatus" class="notFound">No items were found</li>
     </ul>
   </section>
 </template>
@@ -30,12 +32,46 @@ export default {
   },
   data() {
     return {
-      fruitData : ['Broccoli','Lettuce','Peppers','Root vegetables','Cucumber','Parsley']
+      fruitData: ['Broccoli', 'Lettuce', 'Peppers', 'Root vegetables', 'Cucumber', 'Parsley'],
+      inputData: null,
+      activeStatus: false,
+      filteredData : [],
+      errorStatus: false
     }
   },
-  methods : {
-    getFruitData () {
+  methods: {
+    getFruitData() {
       return false
+    },
+    filterFruit(inputData) {
+      let emptyArray = []
+
+      //Filtrar Datos
+
+      if (inputData) {
+        //Generar un filtro en base a las letras iniciales
+        emptyArray = this.fruitData.filter((item) => {
+          return item.toLocaleLowerCase().startsWith(inputData.toLocaleLowerCase())
+        })
+        console.log(emptyArray.length)
+        this.filteredData = emptyArray
+
+        if(emptyArray.length===0){
+          this.errorStatus = true
+        } else {
+          this.errorStatus = false
+        }
+      } else {
+        this.errorStatus = false
+        this.filteredData = this.fruitData
+      } 
+    },
+    showResults() {
+      this.activeStatus = true
+      this.filterFruit(this.inputData)
+    },
+    disableResults() {
+      this.activeStatus = false
     }
   }
 }

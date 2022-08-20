@@ -21,6 +21,7 @@ body {
 .container{
     height: 4rem;
     width: 25vw;
+    display: flexbox;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -28,12 +29,6 @@ body {
     border-radius: 8px;
     box-shadow: 0px 3px 20px #a0aec099;
     position: relative;
-}
-
-.container .search:hover + .results{
-    visibility: visible;
-    opacity: 1;
-    transition: 0.3s;
 }
 
 /* Busqueda */
@@ -83,7 +78,7 @@ body {
 
 .search input:focus + .icon svg{
     transform: rotate(180deg);
-    transition: 0.3;
+    transition: 0.3s;
     fill: black;
 }
 
@@ -118,4 +113,14 @@ body {
     cursor: pointer;
     color: #4299E1;
     transition: 0.3s;
+}
+
+.activeResults{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.notFound{
+    color: #A0AEC0;
 }
